@@ -9,12 +9,12 @@ body {
 
 /* app styles */
 .App {
-  max-width: 400px;
+  max-width: 700px;
   margin: 30px auto;
   text-align: center;
 }
 nav {
-  padding: 5px;
+  padding: 16px;
 }
 nav ul {
   padding: 0;
@@ -35,4 +35,9 @@ nav ul li {
   padding: 10px;
   margin: 10px auto;
   border-radius: 10px;
+}
+button {
+  padding: 8px 16px;
+  border: none;
+  cursor: pointer;
 }

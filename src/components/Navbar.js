@@ -1,20 +1,36 @@
-import React, { Component } from "react";
-import { ThemeContext } from "../context/ThemeContext";
+import React, { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
+import { useTheme } from "../context/ThemeContext";
+import Button from "./ThemedButton";
 
-export default class Navbar extends Component {
-  static contextType = ThemeContext;
-  render() {
-    const { isLightTheme, light, dark } = this.context;
-    const theme = isLightTheme ? light : dark;
-    return (
-      <nav style={{ backgroundColor: theme.ui, color: theme.content }}>
-        <h1>Context</h1>
-        <ul>
-          <li>Home</li>
-          <li>About</li>
-          <li>Contact</li>
-        </ul>
-      </nav>
-    );
-  }
+function Navbar() {
+  const { theme, toggleTheme } = useTheme();
+
+  const { isAuthenticated, logIn, logOut } = useContext(AuthContext);
+
+  return (
+    <nav
+      className="navbar"
+      style={{ backgroundColor: theme.ui, color: theme.content }}
+    >
+      <h1>Context App</h1>
+      <ul>
+        <li>Home</li>
+        <li>About</li>
+        <li>Contact</li>
+        <li>
+          <Button handleClick={toggleTheme}>Toggle theme</Button>
+        </li>
+        <li>
+          {isAuthenticated ? (
+            <Button handleClick={logOut}>Log Out</Button>
+          ) : (
+            <Button handleClick={logIn}>Log In</Button>
+          )}
+        </li>
+      </ul>
+    </nav>
+  );
 }
+
+export default Navbar;
