@@ -12,11 +12,13 @@ export const BookContext = createContext();
 
 const BookContextProvider = ({ children }) => {
   const storedBooks = JSON.parse(localStorage.getItem("books"));
-  const [books, dispatch] = useReducer(
-    reducer,
-    initialState,
-    () => storedBooks
-  );
+
+  // Reducer uses a third parameter to overwrite initialState with an alt init state
+  // In this case we use books from localstorage merged with books in initialState
+  const [books, dispatch] = useReducer(reducer, initialState, () => [
+    ...initialState,
+    ...storedBooks,
+  ]);
 
   useEffect(() => {
     localStorage.setItem("books", JSON.stringify(books));

@@ -16,6 +16,7 @@ const AddBook = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(book);
     addBook(book);
     setBook(defaultState);
   };

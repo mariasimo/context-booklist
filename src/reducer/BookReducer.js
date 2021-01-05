@@ -12,10 +12,10 @@ export const initialState = [
 
 export const ADD_BOOK = "ADD_BOOK";
 export const REMOVE_BOOK = "REMOVE_BOOK";
-export const reducer = (state = initialState, action) => {
+export const reducer = (state, action) => {
   if (action.type === ADD_BOOK) {
-    const newState = [...state, { ...action.payload }];
-    return newState;
+    const storedBooks = state ? state : [];
+    return [...storedBooks, { ...action.payload }];
   }
   if (action.type === REMOVE_BOOK) {
     return state.filter((book) => book.id !== action.payload.id);

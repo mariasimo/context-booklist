@@ -12,7 +12,7 @@ function Booklist() {
       className="book-list"
       style={{ backgroundColor: theme.bg, color: theme.content }}
     >
-      {books.length ? (
+      {books?.length ? (
         <ul>
           {books.map((book) => (
             <li key={book.id} style={{ backgroundColor: theme.ui }}>
